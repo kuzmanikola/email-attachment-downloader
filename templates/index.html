@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Attachment Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 Email Attachment Downloader</h1>
+            <p class="subtitle">Download PDF attachments from your Gmail inbox</p>
+        </header>
+
+        <div class="card">
+            <h2>Configuration</h2>
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="email_address">Your Gmail Address</label>
+                    <input type="email" id="email_address" name="email_address" placeholder="your.email@gmail.com" required>
+                    <small>Your Gmail email address</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_password">App Password</label>
+                    <input type="password" id="app_password" name="app_password" placeholder="16-character app password" required>
+                    <small>Generate an app password from your Google Account settings</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="sender_mail">Sender Email</label>
+                    <input type="email" id="sender_mail" name="sender_mail" placeholder="sender@example.com" required>
+                    <small>Email address of the sender to search for</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" id="start_date" name="start_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" id="end_date" name="end_date" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-text">Start Download</span>
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+
+        <div class="card progress-card" id="progressCard" style="display: none;">
+            <h2>Progress</h2>
+            <div class="progress-info">
+                <p id="statusMessage">Initializing...</p>
+                <div class="progress-stats">
+                    <span id="progressText">0 / 0 emails</span>
+                    <span id="downloadText">0 PDFs downloaded</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="card files-card" id="filesCard" style="display: none;">
+            <h2>Downloaded Files</h2>
+            <div id="filesList" class="files-list">
+                <!-- Files will be listed here -->
+            </div>
+        </div>
+
+        <footer>
+            <p>⚠️ Make sure you have <a href="https://support.google.com/accounts/answer/185833" target="_blank">2-Step Verification</a> enabled and have generated an <a href="https://myaccount.google.com/apppasswords" target="_blank">App Password</a></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
